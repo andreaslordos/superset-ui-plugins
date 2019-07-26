@@ -68,60 +68,6 @@ const defaultProps = {
 };
 
 function CustomFunnel(element, props) {
-  function convertToPercentage(data, categoryIncluded) {
-    var returnArr = [];
-    var maxValue = data[0]['value']; //biggest value in funnel chart
-    var labelBuilder;
-    for (var i = 0; i < data.length; i++) {
-      labelBuilder = '';
-      if (categoryIncluded) {
-        labelBuilder += data[i]['label'] + ', ';
-      }
-      labelBuilder += String(Math.round((data[i]['value'] / maxValue) * 100 * 10) / 10) + '%';
-      returnArr.push({ label: labelBuilder, value: data[i]['value'] });
-    }
-    return returnArr;
-  }
-
-  /*
-  function labelTransformer(format, data) {
-
-    var categoryIncluded = false;
-    var percentageIncluded = false;
-    var valueIncluded = false;
-
-    if (format.includes("l")){
-      var categoryIncluded=true;
-    }
-    if (format.includes("p")){
-      percentageIncluded=true;
-    }
-    if (format.includes("f")){
-      valueIncluded=true;
-    }
-
-    var returnArr = [];
-    var maxValue=data[0]['value']; //biggest value in funnel chart
-    var labelBuilder;
-    for (var i=0; i < data.length; i++){
-      labelBuilder="";
-      if (categoryIncluded) {
-        labelBuilder+=data[i]['label']+': ';
-      }
-      if (percentageIncluded) {
-        labelBuilder+=String(Math.round( (data[i]['value']/maxValue*100) * 10) / 10)+"%";
-      }
-      else if (valueIncluded) {
-        labelBuilder+=String(data[i]['value'])
-      }
-      returnArr.push({label:labelBuilder,value:data[i]['value']});
-    }
-    return returnArr;
-  }
-  */
-
-  console.log('props:', props);
-  console.log('element:', element);
   var width = props.width;
   var height = props.height;
   var data = props.data;
@@ -148,27 +94,6 @@ function CustomFunnel(element, props) {
     .attr('class', 'superset-legacy-chart-funnel')
     .append('div')
     .attr('id', 'funnel');
-
-  if (label_format == '{p}') {
-    data = convertToPercentage(data, false);
-    label_format = '{l}';
-  } else if (label_format == '{l}: {p}') {
-    data = convertToPercentage(data, true);
-    label_format = '{l}';
-  }
-
-  /*
-  if (tooltip_enabled){
-    if (tooltip_format=='{p}'){
-      data=convertToPercentage(data,false);
-      tooltip_format='{l}'
-    }
-    else if (tooltip_format=='{l:p}') {
-      data=convertToPercentage(data,true);
-      tooltip_format='{l}'
-    }
-  }
-  */
 
   var options = {
     chart: {
