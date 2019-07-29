@@ -63,7 +63,7 @@ const defaultProps = {
   curve_height: 0,
   tooltip_enabled: true,
   tooltip_format: '{f}',
-  label_format: '{l}: {p}',
+  label_format: '{l}: {f}',
   color_scheme: d3.schemeCategory10,
 };
 
