@@ -17,76 +17,75 @@
  * under the License.
  */
 /* eslint-disable no-magic-numbers, react/forbid-prop-types */
-import React from 'react';
 import PropTypes from 'prop-types';
-import { t } from '@superset-ui/translation';
 import D3Funnel from 'd3-funnel';
 import d3 from 'd3';
-import { select as d3Select } from 'd3-selection';
 import { CategoricalColorNamespace } from '@superset-ui/color';
 
 const propTypes = {
-  width: PropTypes.number.isRequired,
-  height: PropTypes.number.isRequired,
+  bottomPinch: PropTypes.number,
+  colorScheme: PropTypes.string,
+  curveEnabled: PropTypes.bool,
+  curveHeight: PropTypes.number,
   data: PropTypes.arrayOf(
     PropTypes.shape({
       label: PropTypes.string,
       value: PropTypes.number,
     }),
   ).isRequired,
-  bottom_pinch: PropTypes.number,
-  dynamic_height: PropTypes.bool,
-  dynamic_slope: PropTypes.bool,
-  inverted: PropTypes.bool,
-  fill_type: PropTypes.string,
-  min_height: PropTypes.number,
+  dynamicHeight: PropTypes.bool,
+  dynamicSlope: PropTypes.bool,
+  fillType: PropTypes.string,
+  fontSize: PropTypes.string,
+  height: PropTypes.number.isRequired,
   highlight: PropTypes.bool,
-  font_size: PropTypes.string,
-  curve_enabled: PropTypes.bool,
-  curve_height: PropTypes.number,
-  tooltip_enabled: PropTypes.bool,
-  tooltip_format: PropTypes.string,
-  label_format: PropTypes.string,
-  color_scheme: PropTypes.string,
+  inverted: PropTypes.bool,
+  labelFormat: PropTypes.string,
+  minHeight: PropTypes.number,
+  tooltipEnabled: PropTypes.bool,
+  tooltipFormat: PropTypes.string,
+  width: PropTypes.number.isRequired,
 };
 
 const defaultProps = {
-  bottom_pinch: 1,
-  dynamic_height: true,
-  dynamic_slope: true,
-  inverted: false,
-  fill_type: 'gradient',
-  min_height: 0,
+  bottomPinch: 1,
+  colorScheme: d3.schemeCategory10,
+  curveEnabled: false,
+  curveHeight: 0,
+  dynamicHeight: true,
+  dynamicSlope: true,
+  fillType: 'gradient',
+  fontSize: '13px',
   highlight: true,
-  font_size: '13px',
-  curve_enabled: false,
-  curve_height: 0,
-  tooltip_enabled: true,
-  tooltip_format: '{f}',
-  label_format: '{l}: {f}',
-  color_scheme: d3.schemeCategory10,
+  inverted: false,
+  labelFormat: '{l}: {f}',
+  minHeight: 0,
+  tooltipEnabled: true,
+  tooltipFormat: '{f}',
 };
 
 function CustomFunnel(element, props) {
-  var width = props.width;
-  var height = props.height;
-  var data = props.data;
-  var bottom_pinch = props.bottom_pinch;
-  var dynamic_height = props.dynamic_height;
-  var dynamic_slope = props.dynamic_slope;
-  var inverted = props.inverted;
-  var fill_type = props.fill_type;
-  var min_height = props.min_height;
-  var highlight = props.highlight;
-  var font_size = props.font_size;
-  var curve_enabled = props.curve_enabled;
-  var curve_height = props.curve_height;
-  var label_format = props.label_format;
-  var tooltip_enabled = props.tooltip_enabled;
-  var tooltip_format = props.tooltip_format;
-  var color_scheme = props.color_scheme;
+  const {
+    bottomPinch,
+    colorScheme,
+    curveEnabled,
+    curveHeight,
+    data,
+    dynamicHeight,
+    dynamicSlope,
+    fillType,
+    fontSize,
+    height,
+    highlight,
+    inverted,
+    labelFormat,
+    minHeight,
+    tooltipEnabled,
+    tooltipFormat,
+    width,
+  } = props;
 
-  const colorFn = CategoricalColorNamespace.getScale(color_scheme);
+  const colorFn = CategoricalColorNamespace.getScale(colorScheme);
 
   const div = d3
     .select(element)
@@ -95,40 +94,39 @@ function CustomFunnel(element, props) {
     .append('div')
     .attr('id', 'funnel');
 
-  var options = {
-    chart: {
-      width: width,
-      height: height,
-      bottomPinch: bottom_pinch,
-      inverted: inverted,
-      curve: {
-        enabled: curve_enabled,
-        height: curve_height,
-      },
-    },
+  const options = {
     block: {
-      dynamicHeight: dynamic_height,
-      dynamicSlope: dynamic_slope,
+      dynamicHeight,
+      dynamicSlope,
       fill: {
         scale: colorFn,
-        type: fill_type,
+        type: fillType,
       },
-      minHeight: min_height,
-      highlight: highlight,
+      highlight,
+      minHeight,
+    },
+    chart: {
+      bottomPinch,
+      curve: {
+        enabled: curveEnabled,
+        height: curveHeight,
+      },
+      height,
+      inverted,
+      width,
     },
     label: {
-      format: label_format,
-      fontSize: font_size,
+      fontSize,
+      format: labelFormat,
     },
     tooltip: {
-      enabled: tooltip_enabled,
-      format: tooltip_format,
+      enabled: tooltipEnabled,
+      format: tooltipFormat,
     },
   };
 
-  var chart = new D3Funnel('#funnel');
+  const chart = new D3Funnel('#funnel');
   chart.draw(data, options);
-  return '';
 }
 
 CustomFunnel.displayName = 'funnel';

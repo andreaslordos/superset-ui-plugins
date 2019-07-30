@@ -24,9 +24,9 @@ import thumbnail from './images/thumbnail.png';
 const metadata = new ChartMetadata({
   credits: ['https://github.com/andreaslordos/incubator-superset'],
   description: 'Funnel Chart',
+  name: t('Funnel Chart'),
   thumbnail,
   useLegacyApi: true,
-  name: t('Funnel Chart'),
 });
 
 export default class FunnelChartPlugin extends ChartPlugin {

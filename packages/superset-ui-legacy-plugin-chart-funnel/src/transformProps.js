@@ -18,57 +18,45 @@
  */
 
 export default function transformProps(chartProps) {
-  try {
-    var { width, height, rawFormData, payload } = chartProps;
-    var formData = rawFormData;
-  } catch (err) {
-    var { width, height, formData, payload } = chartProps;
-  }
-  var {
-    bottom_pinch,
-    dynamic_height,
-    dynamic_slope,
-    inverted,
-    fill_type,
-    min_height,
-    highlight,
-    font_size,
-    curve_enabled,
-    curve_height,
-    tooltip_enabled,
-    tooltip_format,
-    label_format,
-    color_scheme,
-  } = formData;
-  console.log(chartProps);
-  bottom_pinch = parseInt(bottom_pinch);
-  curve_height = parseInt(curve_height);
-  font_size = font_size.toString() + 'px';
-  min_height = parseInt(min_height);
+  const { width, height, formData, payload } = chartProps;
 
-  if (fill_type == true) {
-    fill_type = 'gradient';
-  } else {
-    fill_type = 'solid';
-  }
+  const {
+    colorScheme,
+    curveEnabled,
+    dynamicHeight,
+    dynamicSlope,
+    highlight,
+    inverted,
+    labelFormat,
+    tooltipEnabled,
+    tooltipFormat,
+  } = formData;
+
+  let { bottomPinch, curveHeight, fillType, fontSize, minHeight } = formData;
+
+  bottomPinch = parseInt(bottomPinch, 10);
+  curveHeight = parseInt(curveHeight, 10);
+  minHeight = parseInt(minHeight, 10);
+  fontSize = `${fontSize.toString()}px`;
+  fillType = fillType === true ? 'gradient' : 'solid'; // if fillType is true, set it to gradient
 
   return {
-    width,
-    height,
+    bottomPinch,
+    colorScheme,
+    curveEnabled,
+    curveHeight,
     data: payload.data,
-    bottom_pinch,
-    dynamic_height,
-    dynamic_slope,
-    inverted,
-    fill_type,
-    min_height,
+    dynamicHeight,
+    dynamicSlope,
+    fillType,
+    fontSize,
+    height,
     highlight,
-    font_size,
-    curve_enabled,
-    curve_height,
-    tooltip_enabled,
-    tooltip_format,
-    label_format,
-    color_scheme,
+    inverted,
+    labelFormat,
+    minHeight,
+    tooltipEnabled,
+    tooltipFormat,
+    width,
   };
 }

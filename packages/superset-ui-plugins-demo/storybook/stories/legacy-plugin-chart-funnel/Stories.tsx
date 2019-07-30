@@ -12,9 +12,9 @@ export default [
         height={500}
         payload={{ data }}
         formData={{
-          min_height: 5,
-          font_size: '10px',
-          tooltip_enabled: true,
+          fontSize: '10px',
+          minHeight: 5,
+          tooltipEnabled: true,
         }}
       />
     ),
