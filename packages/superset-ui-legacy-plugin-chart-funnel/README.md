@@ -1,4 +1,4 @@
-## @superset-ui/legacy-plugin-chart-funnels
+## @superset-ui/legacy-plugin-chart-funnel
 
 This plugin provides Funnel Diagram for Superset.
 
