@@ -22,7 +22,7 @@ import transformProps from './transformProps';
 import thumbnail from './images/thumbnail.png';
 
 const metadata = new ChartMetadata({
-  credits: ['https://github.com/andreaslordos/incubator-superset'],
+  credits: ['https://github.com/jakezatecky/d3-funnel'],
   description: 'Funnel Chart',
   name: t('Funnel Chart'),
   thumbnail,

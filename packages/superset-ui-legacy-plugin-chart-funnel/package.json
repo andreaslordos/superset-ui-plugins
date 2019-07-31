@@ -1,6 +1,6 @@
 {
   "name": "@superset-ui/legacy-plugin-chart-funnel",
-  "version": "0.11.11",
+  "version": "0.11.12",
   "description": "Superset Legacy Chart - Funnel Chart",
   "sideEffects": [
     "*.css"
@@ -18,12 +18,12 @@
   "keywords": [
     "superset"
   ],
-  "author": "andreaslordos",
+  "author": "Superset",
   "license": "Apache-2.0",
   "bugs": {
-    "url": "https://github.com/andreaslordos/superset-ui-plugins/issues"
+    "url": "https://github.com/apache-superset/superset-ui-plugins/issues"
   },
-  "homepage": "https://github.com/andreaslordos/superset-ui-plugins#readme",
+  "homepage": "https://github.com/apache-superset/superset-ui-plugins#readme",
   "publishConfig": {
     "access": "public"
   },

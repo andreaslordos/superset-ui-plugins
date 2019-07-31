@@ -9,7 +9,7 @@ Configure `key`, which can be any `string`, and register the plugin. This `key` 
 ```js
 import FunnelChartPlugin from '@superset-ui/legacy-plugin-chart-funnel';
 
-new ChordChartPlugin()
+new FunnelChartPlugin()
   .configure({ key: 'funnel' })
   .register();
 ```
