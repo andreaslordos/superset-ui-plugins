@@ -29,3 +29,7 @@ Then use it via `SuperChart`. See [storybook](https://apache-superset.github.io/
   }}
 />
 ```
+
+### Preview
+
+![Funnel Preview](https://raw.githubusercontent.com/andreaslordos/superset-ui-plugins/funnel/packages/superset-ui-legacy-plugin-chart-funnel/src/images/thumbnail.png)
